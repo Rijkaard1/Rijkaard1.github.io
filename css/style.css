@@ -221,21 +221,12 @@ footer { margin-top: 48px; color: var(--muted); font-size: 0.8rem; }
 }
 .brand:hover { text-decoration: none; }
 
-/* ---------- Neon wipe transition ---------- */
-.wipe {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  pointer-events: none;
-  background: linear-gradient(90deg, var(--purple), var(--green));
-  box-shadow: 0 0 60px rgba(180, 77, 255, 0.6), 0 0 60px rgba(57, 255, 136, 0.5);
-  transform: translateX(-101%);
-}
-.wipe-in  { animation: wipe-in 0.25s ease-in forwards; pointer-events: all; }
-.wipe-out { animation: wipe-out 0.25s ease-out forwards; }
-@keyframes wipe-in  { from { transform: translateX(-101%); } to { transform: translateX(0); } }
-@keyframes wipe-out { from { transform: translateX(0); } to { transform: translateX(101%); } }
+/* ---------- Page transition: fade + slide up (0.4s) ---------- */
+main { animation: page-in 0.4s ease-out both; }
+main.leaving { animation: page-out 0.2s ease-in forwards; }
+@keyframes page-in  { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes page-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-12px); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .wipe { display: none; }
+  main, main.leaving { animation: none; }
 }

@@ -10,39 +10,25 @@ if (toggle && sidebar) {
   });
 }
 
-/* ---------- Neon wipe page transition (~0.25s) ---------- */
-const WIPE_MS = 250;
+/* ---------- Page transition: fade + slide up ---------- */
+const OUT_MS = 200;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const wipe = document.createElement("div");
-wipe.className = "wipe";
-document.body.appendChild(wipe);
+const main = document.querySelector("main");
 
-function wipeOut() {
-  // New page: the bar starts covering the screen, then slides away to the right.
-  wipe.className = "wipe wipe-out";
-  setTimeout(() => (wipe.className = "wipe"), WIPE_MS);
-}
-
-try {
-  if (!reduceMotion && sessionStorage.getItem("wipe") === "1") wipeOut();
-  sessionStorage.removeItem("wipe");
-} catch (e) { /* storage unavailable: skip the entry wipe */ }
-
-// Back/forward cache: make sure the bar is hidden when returning to a page.
+// Back/forward cache: make sure the page is visible when returning to it.
 window.addEventListener("pageshow", (e) => {
-  if (e.persisted) wipe.className = "wipe";
+  if (e.persisted && main) main.classList.remove("leaving");
 });
 
 document.addEventListener("click", (e) => {
   const a = e.target.closest("a");
-  if (!a || reduceMotion) return;
+  if (!a || !main || reduceMotion) return;
   if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
   if (a.target === "_blank" || a.hasAttribute("download")) return;
   const url = new URL(a.href, location.href);
   if (url.origin !== location.origin || url.pathname === location.pathname) return;
 
   e.preventDefault();
-  try { sessionStorage.setItem("wipe", "1"); } catch (err) { /* ignore */ }
-  wipe.className = "wipe wipe-in";
-  setTimeout(() => (location.href = a.href), WIPE_MS);
+  main.classList.add("leaving");
+  setTimeout(() => (location.href = a.href), OUT_MS);
 });
