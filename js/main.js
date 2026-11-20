@@ -32,3 +32,19 @@ document.addEventListener("click", (e) => {
   main.classList.add("leaving");
   setTimeout(() => (location.href = a.href), OUT_MS);
 });
+
+/* ---------- Screenshot lightbox ---------- */
+const lightbox = document.querySelector(".lightbox");
+if (lightbox && typeof lightbox.showModal === "function") {
+  const big = lightbox.querySelector("img");
+  document.querySelectorAll(".shot").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const img = btn.querySelector("img");
+      big.src = img.src;
+      big.alt = img.alt;
+      lightbox.showModal();
+    });
+  });
+  lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+  lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+}
