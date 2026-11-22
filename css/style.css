@@ -247,3 +247,4 @@ main.leaving { animation: page-out 0.2s ease-in forwards; }
 .version-line .v-num { color: var(--green); border: 1px solid var(--green); border-radius: 999px; padding: 2px 12px; }
 .version-line .v-date { color: var(--text); }
 .shots.single { grid-template-columns: minmax(220px, 420px); }
+.shots.single img { height: auto; }
