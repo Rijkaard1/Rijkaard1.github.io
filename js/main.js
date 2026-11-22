@@ -48,3 +48,16 @@ if (lightbox && typeof lightbox.showModal === "function") {
   lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
   lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
 }
+
+/* ---------- Project version badge (reads version.json, so one file controls the label) ---------- */
+document.querySelectorAll("[data-version-src]").forEach(async (box) => {
+  try {
+    const res = await fetch(box.dataset.versionSrc, { cache: "no-cache" });
+    if (!res.ok) return;
+    const v = await res.json();
+    const num = box.querySelector(".v-num");
+    const date = box.querySelector(".v-date");
+    if (num && v.version) num.textContent = "v" + v.version;
+    if (date && v.updated) date.textContent = v.updated;
+  } catch (_) { /* keep the fallback text already in the page */ }
+});

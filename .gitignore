@@ -1,1 +1,4 @@
 .claude/
+__pycache__/
+simple-security-system/logs/
+simple-security-system/known_ips.json
