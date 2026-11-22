@@ -2,6 +2,12 @@
 
 Each release updates `version.json` (version number and date) and adds an entry here.
 
+## 1.1.0 - 2026-11-22
+
+- New: overall risk score (0-100, LOW / MODERATE / HIGH) with a breakdown of what raised it and tips (menu option 11)
+- New: colored output (red / yellow / green); turns off automatically when piped or saved
+- Changed: Run all and save to log is now option 12 and ends with the risk score
+
 ## 1.0.0 - 2026-11-22
 
 First public release.

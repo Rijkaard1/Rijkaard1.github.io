@@ -25,7 +25,10 @@ The menu shows the current version and the date it was last updated.
 | 8 | Unknown IP alerts | Warns about IPs your laptop has not connected to before; scan once or live mode |
 | 9 | Startup programs check | Registry, Startup folders and logon tasks; flags unsigned or odd entries |
 | 10 | Open ports check | Listening TCP ports, who can reach them, firewall status |
-| 11 | Run all and save to log | Runs the read-only checks and saves results to `logs/` |
+| 11 | Risk score | Overall 0-100 score (LOW / MODERATE / HIGH) built from the other checks, with what raised it and tips |
+| 12 | Run all and save to log | Runs the read-only checks, ends with the risk score and saves results to `logs/` |
+
+Output is colored: red for WARNING / UNSAFE / HIGH, yellow for CAUTION, green for SAFE. Colors turn off automatically when output is piped or saved, or if the `NO_COLOR` environment variable is set.
 
 ## Limits
 

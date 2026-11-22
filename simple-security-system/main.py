@@ -2,7 +2,8 @@
 import json
 import os
 
-from modules import network_info, ip_details, connections, wifi_safety, recent_apps, file_monitor, file_finder, ip_watch, startup_check, open_ports, logger
+from modules import network_info, ip_details, connections, wifi_safety, recent_apps, file_monitor, file_finder, ip_watch, startup_check, open_ports, risk_score, logger
+from modules.colors import c, cprint, level_color, BOLD
 
 
 def version_label():
@@ -17,9 +18,9 @@ def version_label():
 
 
 def show(title, data):
-    print(f"\n=== {title} ===")
+    cprint(f"\n=== {title} ===")
     for k, v in data.items():
-        print(f"  {k:<26}: {v}")
+        cprint(f"  {k:<26}: {v}")
 
 
 def do_network():
@@ -41,9 +42,9 @@ def do_connections():
     for c in external:
         key = (c["Remote IP"], c["Port"], c["Process"])
         groups[key] = groups.get(key, 0) + 1
-    print(f"\n  {'Remote IP':<40}{'Port':<8}{'Process':<28}Count")
+    cprint(f"\n  {'Remote IP':<40}{'Port':<8}{'Process':<28}Count")
     for (ip, port, proc), n in groups.items():
-        print(f"  {ip:<40}{port:<8}{proc:<28}{n}")
+        cprint(f"  {ip:<40}{port:<8}{proc:<28}{n}")
     return "connections", {"summary": summary, "internet": external}
 
 
@@ -56,9 +57,9 @@ def do_wifi():
 def do_apps():
     summary, apps = recent_apps.report()
     show("Recently opened apps", summary)
-    print(f"\n  {'Last run':<18}{'Runs':<7}App")
+    cprint(f"\n  {'Last run':<18}{'Runs':<7}App")
     for a in apps:
-        print(f"  {a['Last run']:<18}{a['Total runs']:<7}{a['App']}")
+        cprint(f"  {a['Last run']:<18}{a['Total runs']:<7}{a['App']}")
     return "recent_apps", {"summary": summary, "apps": apps}
 
 
@@ -67,101 +68,101 @@ def do_files():
     show("Downloaded files (last 30 days)", summary)
     flagged = [r for r in results if r["Rating"] != "SAFE"]
     if flagged:
-        print("\n  !! FILES NEEDING ATTENTION !!")
+        cprint("\n  !! FILES NEEDING ATTENTION !!")
         for r in flagged:
-            print(f"\n  [{r['Rating']}] {r['File']}  ({r['Size (KB)']} KB, {r['Modified']})")
-            print(f"      Source : {r['Source']}")
+            cprint(f"\n  [{r['Rating']}] {r['File']}  ({r['Size (KB)']} KB, {r['Modified']})")
+            cprint(f"      Source : {r['Source']}")
             for why in r["Reasons"]:
-                print(f"      - {why}")
+                cprint(f"      - {why}")
     safe = [r for r in results if r["Rating"] == "SAFE"]
     if safe:
-        print(f"\n  Safe-looking files ({len(safe)}):")
+        cprint(f"\n  Safe-looking files ({len(safe)}):")
         for r in safe:
-            print(f"  [SAFE] {r['File']}  ({r['Size (KB)']} KB, {r['Modified']})")
+            cprint(f"  [SAFE] {r['File']}  ({r['Size (KB)']} KB, {r['Modified']})")
             for why in r["Reasons"]:
                 if why.startswith("Signed by"):
-                    print(f"         {why}")
-            print(f"         SHA256: {r['SHA256']}")
-    print("\n  Note: this is a heuristic check, not an antivirus scan.")
+                    cprint(f"         {why}")
+            cprint(f"         SHA256: {r['SHA256']}")
+    cprint("\n  Note: this is a heuristic check, not an antivirus scan.")
     return "file_monitor", {"summary": summary, "files": results}
 
 
 def do_find():
     name = input("  File name (part of the name is OK): ").strip()
     if not name:
-        print("  No name entered.")
+        cprint("  No name entered.")
         return
     ext = input("  File extension / type (e.g. pdf, docx; blank = any): ").strip()
-    print("  Searching all drives, please wait...")
+    cprint("  Searching all drives, please wait...")
     matches = file_finder.find(name, ext)
-    print(f"\n=== Found {len(matches)} file(s) ===")
+    cprint(f"\n=== Found {len(matches)} file(s) ===")
     for m in matches[: file_finder.MAX_RESULTS]:
-        print(f"  {m['Location']}")
-        print(f"      {m['Size (KB)']} KB, modified {m['Modified']}")
+        cprint(f"  {m['Location']}")
+        cprint(f"      {m['Size (KB)']} KB, modified {m['Modified']}")
     if len(matches) > file_finder.MAX_RESULTS:
-        print(f"\n  Showing newest {file_finder.MAX_RESULTS} of {len(matches)}. Use a more specific name.")
+        cprint(f"\n  Showing newest {file_finder.MAX_RESULTS} of {len(matches)}. Use a more specific name.")
     if not matches:
-        print("  Nothing found. Check the spelling, or try a shorter part of the name.")
+        cprint("  Nothing found. Check the spelling, or try a shorter part of the name.")
 
 
 def print_alerts(alerts):
     for a in alerts:
-        print(f"\n  [{a['Level']}] New connection: {a['IP']}")
-        print(f"      Ports   : {', '.join(a['Ports'])}")
-        print(f"      Programs: {', '.join(a['Programs'])}")
-        print(f"      Owner   : {a['Owner']}")
+        cprint(f"\n  [{a['Level']}] New connection: {a['IP']}")
+        cprint(f"      Ports   : {', '.join(a['Ports'])}")
+        cprint(f"      Programs: {', '.join(a['Programs'])}")
+        cprint(f"      Owner   : {a['Owner']}")
         for why in a["Reasons"]:
-            print(f"      - {why}")
+            cprint(f"      - {why}")
 
 
 def ip_watch_once():
     alerts, baseline, total = ip_watch.scan()
     if baseline:
-        print(f"\n  First run: saved {total} current IP addresses as your baseline.")
-        print("  From now on, new addresses will be reported.")
+        cprint(f"\n  First run: saved {total} current IP addresses as your baseline.")
+        cprint("  From now on, new addresses will be reported.")
         return
-    print(f"\n=== Unknown IP alerts === ({total} known IPs)")
+    cprint(f"\n=== Unknown IP alerts === ({total} known IPs)")
     if alerts:
         print_alerts(alerts)
         logger.save("ip_watch", alerts)
-        print("\n  A new IP is a reason to look, not proof of a problem.")
+        cprint("\n  A new IP is a reason to look, not proof of a problem.")
     else:
-        print("  No new IP addresses. All connections are to known addresses.")
+        cprint("  No new IP addresses. All connections are to known addresses.")
 
 
 def ip_watch_live(interval=30):
     from datetime import datetime
     import time
 
-    print(f"\n  Live mode: checking every {interval}s. Press Ctrl+C to stop.")
+    cprint(f"\n  Live mode: checking every {interval}s. Press Ctrl+C to stop.")
     shown = set()
     try:
         while True:
             alerts, baseline, total = ip_watch.scan()
             stamp = datetime.now().strftime("%H:%M:%S")
             if baseline:
-                print(f"  [{stamp}] Baseline saved ({total} IPs). Watching for new ones...")
+                cprint(f"  [{stamp}] Baseline saved ({total} IPs). Watching for new ones...")
             else:
                 fresh = [a for a in alerts if a["IP"] not in shown]
                 shown.update(a["IP"] for a in fresh)
                 if fresh:
-                    print(f"\n  [{stamp}] {len(fresh)} new alert(s):")
+                    cprint(f"\n  [{stamp}] {len(fresh)} new alert(s):")
                     print_alerts(fresh)
                     logger.save("ip_watch", fresh)
                 else:
-                    print(f"  [{stamp}] No new IPs ({total} known)")
+                    cprint(f"  [{stamp}] No new IPs ({total} known)")
             time.sleep(interval)
     except KeyboardInterrupt:
-        print("\n  Live mode stopped.")
+        cprint("\n  Live mode stopped.")
 
 
 def do_ip_watch():
     while True:
-        print("\n  -- Unknown IP alerts --")
-        print("  1) Scan once")
-        print("  2) Live mode (every 30 seconds)")
-        print("  3) Trust a flagged IP")
-        print("  0) Back")
+        cprint("\n  -- Unknown IP alerts --")
+        cprint("  1) Scan once")
+        cprint("  2) Live mode (every 30 seconds)")
+        cprint("  3) Trust a flagged IP")
+        cprint("  0) Back")
         c = input("  Choose: ").strip()
         if c == "1":
             ip_watch_once()
@@ -170,15 +171,15 @@ def do_ip_watch():
         elif c == "3":
             flagged = ip_watch.flagged_ips()
             if not flagged:
-                print("  No flagged IPs waiting for approval.")
+                cprint("  No flagged IPs waiting for approval.")
                 continue
-            print("  Flagged IPs: " + ", ".join(flagged))
+            cprint("  Flagged IPs: " + ", ".join(flagged))
             ip = input("  IP to trust: ").strip()
-            print("  Trusted." if ip_watch.trust(ip) else "  That IP is not in the known list.")
+            cprint("  Trusted." if ip_watch.trust(ip) else "  That IP is not in the known list.")
         elif c == "0":
             break
         else:
-            print("  Invalid choice.")
+            cprint("  Invalid choice.")
 
 
 def print_rated(items, label, detail_lines):
@@ -186,24 +187,24 @@ def print_rated(items, label, detail_lines):
     flagged = [r for r in items if r["Rating"] != "SAFE"]
     safe = [r for r in items if r["Rating"] == "SAFE"]
     if flagged:
-        print("\n  !! NEEDING ATTENTION !!")
+        cprint("\n  !! NEEDING ATTENTION !!")
         for r in flagged:
-            print(f"\n  [{r['Rating']}] {label(r)}")
+            cprint(f"\n  [{r['Rating']}] {label(r)}")
             for line in detail_lines(r):
-                print(f"      {line}")
+                cprint(f"      {line}")
             for why in r["Reasons"]:
-                print(f"      - {why}")
+                cprint(f"      - {why}")
     if safe:
-        print(f"\n  Safe-looking ({len(safe)}):")
+        cprint(f"\n  Safe-looking ({len(safe)}):")
         for r in safe:
-            print(f"  [SAFE] {label(r)}")
+            cprint(f"  [SAFE] {label(r)}")
 
 
 def do_startup():
     summary, items = startup_check.report()
     show("Startup programs", summary)
     print_rated(items, lambda r: r["Name"], lambda r: [f"Source : {r['Source']}", f"Runs   : {r['Target']}"])
-    print("\n  Note: this is a heuristic check, not an antivirus scan.")
+    cprint("\n  Note: this is a heuristic check, not an antivirus scan.")
     return "startup_check", {"summary": summary, "entries": items}
 
 
@@ -217,8 +218,33 @@ def do_ports():
         + (f" +{len(r['Ports']) - 6} more" if len(r["Ports"]) > 6 else ""),
         lambda r: [f"Program: {r['Path']}"],
     )
-    print("\n  Note: shows what your laptop is listening on; it does not scan from outside.")
+    cprint("\n  Note: shows what your laptop is listening on; it does not scan from outside.")
     return "open_ports", {"summary": summary, "ports": items}
+
+
+def show_risk(r):
+    score, band = r["score"], r["band"]
+    col = level_color(band)
+    filled = round(score / 5)
+    cprint("\n=== Risk score ===")
+    cprint(f"  Score : {c(str(score), BOLD, col)} / 100   {c('[' + band + ']', BOLD, col)}")
+    cprint("  " + c("[" + "#" * filled + "-" * (20 - filled) + "]", col))
+    if r["breakdown"]:
+        cprint("\n  What raised it:")
+        for p in r["breakdown"]:
+            cprint(f"    +{p['Points']:<3}{p['Area']}")
+            if p["Advice"]:
+                cprint(f"        Tip: {p['Advice']}")
+    else:
+        cprint("  Nothing raised the score. No risks found by these checks.")
+    cprint("\n  Scale: LOW 0-19, MODERATE 20-49, HIGH 50-100. A rough guide, not a guarantee of safety.")
+
+
+def do_risk():
+    cprint("\n  Running the checks for the risk score (this can take a little while)...")
+    r = risk_score.run()
+    show_risk(r)
+    return "risk_score", r
 
 
 MENU = {
@@ -229,19 +255,20 @@ MENU = {
 
 def main():
     while True:
-        print(f"\n--- Simple Security System{version_label()} ---")
-        print("1) Current network info")
-        print("2) My public IP details")
-        print("3) Active connections / IPs seen")
-        print("4) Wi-Fi safety check")
-        print("5) Apps opened in last 24 hours")
-        print("6) Downloaded files check (last 30 days)")
-        print("7) Find a file location (by name and type)")
-        print("8) Unknown IP alerts (new connections)")
-        print("9) Startup programs check")
-        print("10) Open ports check")
-        print("11) Run all and save to log")
-        print("0) Exit")
+        cprint(f"\n--- Simple Security System{version_label()} ---")
+        cprint("1) Current network info")
+        cprint("2) My public IP details")
+        cprint("3) Active connections / IPs seen")
+        cprint("4) Wi-Fi safety check")
+        cprint("5) Apps opened in last 24 hours")
+        cprint("6) Downloaded files check (last 30 days)")
+        cprint("7) Find a file location (by name and type)")
+        cprint("8) Unknown IP alerts (new connections)")
+        cprint("9) Startup programs check")
+        cprint("10) Open ports check")
+        cprint("11) Risk score (overall)")
+        cprint("12) Run all and save to log")
+        cprint("0) Exit")
         choice = input("Choose: ").strip()
         if choice == "0":
             break
@@ -252,12 +279,19 @@ def main():
         elif choice == "8":
             do_ip_watch()
         elif choice == "11":
+            do_risk()
+        elif choice == "12":
+            results = {}
             for fn in MENU.values():
                 feature, data = fn()
+                results[feature] = data
                 path = logger.save(feature, data)
-            print(f"\nSaved to {path}")
+            risk = risk_score.from_results(results)
+            show_risk(risk)
+            path = logger.save("risk_score", risk)
+            cprint(f"\nSaved to {path}")
         else:
-            print("Invalid choice.")
+            cprint("Invalid choice.")
 
 
 if __name__ == "__main__":
