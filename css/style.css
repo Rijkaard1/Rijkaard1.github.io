@@ -251,3 +251,27 @@ main.leaving { animation: page-out 0.2s ease-in forwards; }
 
 /* ---------- Profile picture ---------- */
 img.avatar { object-fit: cover; padding: 0; border: 2px solid var(--purple); }
+
+/* ---------- Mathematics courses ---------- */
+.course .course-meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 14px; }
+.course-empty { border-style: dashed; text-align: center; color: var(--muted); }
+.course-empty h2 { color: var(--purple); }
+.files { list-style: none; display: grid; gap: 10px; }
+.files li { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 10px 14px; background: var(--panel-2); border: 1px solid var(--border); border-radius: 8px; }
+.files .file-name { font: 500 0.9rem "JetBrains Mono", monospace; color: var(--text); }
+.files .file-type { font: 600 0.7rem "JetBrains Mono", monospace; color: var(--purple); margin-right: 10px; }
+.files a.btn { padding: 6px 14px; font-size: 0.8rem; }
+
+/* ---------- Mathematics categories and course cards ---------- */
+.category { margin-bottom: 40px; }
+.category-title { font-size: 1.15rem; color: var(--green); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.category-title span { color: var(--purple); margin-right: 8px; }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.course-card { display: flex; flex-direction: column; gap: 10px; margin-bottom: 0; color: var(--text); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.course-card:hover, .course-card:focus-visible { text-decoration: none; transform: translateY(-3px); border-color: var(--green); box-shadow: var(--glow-green); outline: none; }
+.course-card h3 { font-size: 1.1rem; color: #fff; }
+.course-card .course-meta { color: var(--muted); font-size: 0.78rem; margin: 0; }
+.course-card p { font-size: 0.92rem; }
+.course-card .tags { gap: 8px; }
+.course-card .tag-item { font-size: 0.72rem; padding: 4px 10px; }
+.course-card .open-link { margin-top: auto; padding-top: 6px; color: var(--green); font-weight: 600; font-size: 0.85rem; }
