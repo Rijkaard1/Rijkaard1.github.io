@@ -248,3 +248,6 @@ main.leaving { animation: page-out 0.2s ease-in forwards; }
 .version-line .v-date { color: var(--text); }
 .shots.single { grid-template-columns: minmax(220px, 420px); }
 .shots.single img { height: auto; }
+
+/* ---------- Profile picture ---------- */
+img.avatar { object-fit: cover; padding: 0; border: 2px solid var(--purple); }
