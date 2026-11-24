@@ -275,3 +275,14 @@ img.avatar { object-fit: cover; padding: 0; border: 2px solid var(--purple); }
 .course-card .tags { gap: 8px; }
 .course-card .tag-item { font-size: 0.72rem; padding: 4px 10px; }
 .course-card .open-link { margin-top: auto; padding-top: 6px; color: var(--green); font-weight: 600; font-size: 0.85rem; }
+
+/* ---------- Mathematics: two big cards + back link ---------- */
+.big-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin-top: 8px; }
+.big-card { display: flex; flex-direction: column; gap: 14px; min-height: 340px; padding: 36px 34px; margin-bottom: 0; color: var(--text); background: linear-gradient(160deg, var(--panel-2), var(--panel)); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.big-card:hover, .big-card:focus-visible { text-decoration: none; transform: translateY(-5px); border-color: var(--green); box-shadow: var(--glow-green); outline: none; }
+.big-card .big-icon { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 16px; font-size: 2.4rem; font-weight: 700; color: var(--bg); background: linear-gradient(135deg, var(--purple), var(--green)); box-shadow: var(--glow-purple); }
+.big-card h2 { font-size: 1.7rem; color: #fff; margin: 4px 0 0; }
+.big-card p { color: var(--text); }
+.big-card .big-count { color: var(--muted); font-size: 0.85rem; margin-top: auto; }
+.big-card .open-link { color: var(--green); font-weight: 600; font-size: 0.95rem; }
+.back-link { display: inline-block; margin-bottom: 18px; font-size: 0.85rem; }
