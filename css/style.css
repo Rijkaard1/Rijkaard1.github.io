@@ -368,3 +368,14 @@ main:has(.hero) { max-width: 1200px; }
 .feature .tag-item { font-size: 0.72rem; padding: 4px 10px; }
 .feature .open-link { margin-top: auto; padding-top: 6px; color: var(--green); font-weight: 600; font-size: 0.85rem; }
 .feature-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; font-size: 1.5rem; font-weight: 700; color: var(--bg); background: linear-gradient(135deg, var(--purple), var(--green)); box-shadow: var(--glow-purple); }
+
+/* ---------- Course cards: main PDF + solutions link ---------- */
+.course-card { position: relative; cursor: pointer; }
+.course-card .course-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 22px; margin-top: auto; padding-top: 8px; }
+.course-card .open-link { margin-top: 0; padding-top: 0; text-decoration: none; }
+.course-card .open-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }   /* whole card opens the main PDF */
+.course-card .solutions-link { position: relative; z-index: 2; color: var(--purple); font-weight: 600; font-size: 0.85rem; }
+.course-card .solutions-link:hover { text-decoration: underline; color: var(--green); }
+.course-card .answer-note { color: var(--muted); font-size: 0.78rem; }
+.course-card:hover, .course-card:focus-within { transform: translateY(-3px); border-color: var(--green); box-shadow: var(--glow-green); }
+.course-card .open-link:focus-visible::after { outline: 2px solid var(--green); outline-offset: 2px; }
