@@ -304,3 +304,22 @@ main:has(.big-cards) { max-width: 1500px; }
 .big-card .big-count { font-size: 0.95rem; margin-top: auto; padding-top: 8px; }
 .big-card .open-link { font-size: 1.05rem; }
 @media (max-width: 760px) { .big-card { min-height: 0; padding: 32px 24px; } }
+
+/* ---------- Projects page: wider, bigger, centered cards ---------- */
+main:has(.project) { max-width: 1500px; }
+.project { max-width: 1160px; margin: 0 auto 32px; padding: 40px 44px; text-align: center; }
+.project .project-head { flex-direction: column; justify-content: center; gap: 14px; margin-bottom: 18px; }
+.project .project-head img { width: 112px; height: 112px; border-radius: 20px; }
+.project h3 { font-size: 1.9rem; color: #fff; }
+.project .meta { font-size: 0.85rem; margin-top: 6px; }
+.project > p { max-width: 820px; margin: 0 auto 18px; font-size: 1.05rem; }
+.project .tags { justify-content: center; margin-bottom: 24px; }
+.project .version-line { justify-content: center; margin-bottom: 18px; }
+.project .credits { max-width: 760px; margin: 0 auto 26px; border-left: 0; border-top: 3px solid var(--purple); border-radius: 0 0 8px 8px; text-align: center; }
+.project .credits ul { justify-content: center; }
+.project .shots { justify-content: center; margin-bottom: 26px; }
+.project .shots.single { grid-template-columns: minmax(220px, 560px); }
+.project .btn-row { justify-content: center; margin-top: 10px; }
+main:has(.project) > .btn-row { justify-content: center; max-width: 1160px; margin: 0 auto; }
+main:has(.project) > footer { text-align: center; }
+@media (max-width: 760px) { .project { padding: 28px 20px; } .project h3 { font-size: 1.5rem; } }
