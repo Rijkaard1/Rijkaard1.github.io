@@ -12,6 +12,7 @@
     "~/mathematics": "~/mathematik",
     "~/projects": "~/projekte",
     "~/contact": "~/kontakt",
+    "Skip to content": "Zum Inhalt springen",
     "Toggle menu": "Menü umschalten",
     "Light theme": "Helles Design",
     "Dark theme": "Dunkles Design",
@@ -265,6 +266,14 @@
       "Mein einseitiger Lebenslauf mit Ausbildung, Kenntnissen und Projekten (PDF, auf Englisch).",
     "Download CV ↓": "Lebenslauf herunterladen ↓",
     "Browse my repositories and recent work.": "Stöbere in meinen Repositories und aktuellen Arbeiten.",
+
+    /* ---------- 404 page ---------- */
+    "Page not found": "Seite nicht gefunden",
+    "The page you are looking for does not exist or has moved. Try one of these instead:":
+      "Die gesuchte Seite existiert nicht oder wurde verschoben. Probiere stattdessen eine dieser Seiten:",
+    "Back to Home": "Zur Startseite",
+    "Page not found | Rijkaard's Cyberworld": "Seite nicht gefunden | Rijkaard's Cyberworld",
+    "This page could not be found.": "Diese Seite wurde nicht gefunden.",
 
     /* ---------- page titles and search/preview texts ---------- */
     "About | Rijkaard's Cyberworld": "Über mich | Rijkaard's Cyberworld",

@@ -23,9 +23,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=20">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
   <aside class="sidebar">
     <a class="brand" href="index.html">Rijkaard's Cyberworld</a>
@@ -48,7 +49,7 @@
     <a class="github-btn" href="https://github.com/Rijkaard1" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
   </aside>
 
-  <main>
+  <main id="main" tabindex="-1">
     <a class="back-link mono" href="mathematics.html">&larr; Mathematics</a>
     <h1 class="page-title"><span>&gt;</span> Real Analysis</h1>
     <p class="lead">Ordered from the basics to the most advanced: pre-algebra, algebra, geometry, trigonometry, probability and statistics, calculus and integration. Click a course to open its PDF.</p>
@@ -70,7 +71,7 @@
 
     <div class="course-grid" id="course-grid">
       <article class="card course-card" data-level="1" data-band="basic" data-solutions="yes">
-        <h3>Pre-Algebra Foundations</h3>
+        <h2>Pre-Algebra Foundations</h2>
         <p class="course-meta mono">Level 1 &middot; PDF &middot; 89 pages &middot; by Rijkaard</p>
         <p>The starting point: from whole numbers and fractions to shapes, data and the first equations. It covers number sense, decimals and percents, integers, ratios and proportions, simple equations, measurement, and graphs and probability, and ends with a final test.</p>
         <div class="tags"><span class="tag-item">Whole numbers</span><span class="tag-item">Fractions</span><span class="tag-item">Decimals and percents</span><span class="tag-item">Integers</span><span class="tag-item">Ratios and proportions</span><span class="tag-item">First equations</span><span class="tag-item">Shapes and area</span><span class="tag-item">Data and probability</span></div>
@@ -80,7 +81,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="2" data-band="basic" data-solutions="yes">
-        <h3>Algebra Foundations</h3>
+        <h2>Algebra Foundations</h2>
         <p class="course-meta mono">Level 2 &middot; PDF &middot; 95 pages &middot; by Rijkaard</p>
         <p>A full course that takes you from the first numbers to the threshold of trigonometry. It builds the algebra everything else depends on, with worked examples and exercises in every chapter.</p>
         <div class="tags"><span class="tag-item">Arithmetic</span><span class="tag-item">Equations</span><span class="tag-item">Graphs and lines</span><span class="tag-item">Polynomials</span><span class="tag-item">Quadratics</span><span class="tag-item">Functions</span><span class="tag-item">Logarithms</span><span class="tag-item">Pre-trigonometry</span></div>
@@ -90,7 +91,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="3" data-band="basic" data-solutions="yes">
-        <h3>Geometry Foundations</h3>
+        <h2>Geometry Foundations</h2>
         <p class="course-meta mono">Level 3 &middot; PDF &middot; 79 pages &middot; by Rijkaard</p>
         <p>A full course from points and angles to solids and transformations. It covers shapes, triangles, the Pythagorean theorem, perimeter and area, circles, volume and surface area, and coordinate geometry.</p>
         <div class="tags"><span class="tag-item">Angles</span><span class="tag-item">Triangles</span><span class="tag-item">Pythagoras</span><span class="tag-item">Area</span><span class="tag-item">Circles</span><span class="tag-item">Solids</span><span class="tag-item">Transformations</span></div>
@@ -100,7 +101,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="4" data-band="intermediate" data-solutions="yes">
-        <h3>Trigonometry and Precalculus</h3>
+        <h2>Trigonometry and Precalculus</h2>
         <p class="course-meta mono">Level 4 &middot; PDF &middot; 89 pages &middot; by Rijkaard</p>
         <p>From triangles and waves to the doorstep of calculus. It covers right-triangle trigonometry, the unit circle and radians, graphs, identities and equations, then polynomial and rational functions, vectors, polar coordinates and complex numbers.</p>
         <div class="tags"><span class="tag-item">Unit circle</span><span class="tag-item">Radians</span><span class="tag-item">Identities</span><span class="tag-item">Trig graphs</span><span class="tag-item">Polynomials</span><span class="tag-item">Vectors</span><span class="tag-item">Polar coordinates</span></div>
@@ -110,7 +111,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="5" data-band="intermediate" data-solutions="yes">
-        <h3>Probability and Statistics</h3>
+        <h2>Probability and Statistics</h2>
         <p class="course-meta mono">Level 5 &middot; PDF &middot; 95 pages &middot; by Rijkaard</p>
         <p>From counting data to making smart guesses. It covers describing data, averages and spread, probability rules, counting and combinations, conditional probability, random variables, the binomial and normal distributions, and sampling and inference.</p>
         <div class="tags"><span class="tag-item">Data and graphs</span><span class="tag-item">Mean and spread</span><span class="tag-item">Probability</span><span class="tag-item">Counting</span><span class="tag-item">Conditional probability</span><span class="tag-item">Random variables</span><span class="tag-item">Normal distribution</span><span class="tag-item">Inference</span></div>
@@ -120,7 +121,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="6" data-band="advanced" data-solutions="no">
-        <h3>Calculus Basics</h3>
+        <h2>Calculus Basics</h2>
         <p class="course-meta mono">Level 6 &middot; PDF &middot; 32 pages</p>
         <p>A complete study guide to the core of calculus: limits, derivatives and an introduction to integration. It includes worked examples, practice problems for every chapter, a full answer key and a formula sheet.</p>
         <div class="tags"><span class="tag-item">Limits</span><span class="tag-item">Derivatives</span><span class="tag-item">Chain rule</span><span class="tag-item">Riemann sums</span><span class="tag-item">Substitution</span></div>
@@ -130,7 +131,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="7" data-band="advanced" data-solutions="no">
-        <h3>Further Integration Topics</h3>
+        <h2>Further Integration Topics</h2>
         <p class="course-meta mono">Level 7 &middot; PDF &middot; 42 pages</p>
         <p>The next step after basic integration: the main techniques, improper integrals, numerical methods and applications. It ends with a strategy chapter, a mixed review, an answer key and a formula sheet.</p>
         <div class="tags"><span class="tag-item">Integration by parts</span><span class="tag-item">Trig substitution</span><span class="tag-item">Partial fractions</span><span class="tag-item">Improper integrals</span><span class="tag-item">Simpson&rsquo;s rule</span><span class="tag-item">Arc length</span></div>
@@ -140,7 +141,7 @@
         </div>
       </article>
       <article class="card course-card" data-level="8" data-band="advanced" data-solutions="no">
-        <h3>Double Integrals</h3>
+        <h2>Double Integrals</h2>
         <p class="course-meta mono">Level 8 &middot; PDF &middot; 37 pages</p>
         <p>An introduction to integrating over regions in the plane. It covers partial derivatives, Fubini&rsquo;s theorem, polar coordinates, applications such as area, volume and mass, change of variables, and a first look at triple integrals.</p>
         <div class="tags"><span class="tag-item">Partial derivatives</span><span class="tag-item">Fubini</span><span class="tag-item">Polar coordinates</span><span class="tag-item">Jacobian</span><span class="tag-item">Triple integrals</span></div>
@@ -156,8 +157,8 @@
     </div>
     <footer>&copy; 2026 Rijkaard's Cyberworld &middot; Erich Law Eh</footer>
   </main>
-  <script src="js/i18n.js?v=16"></script>
-  <script src="js/main.js?v=16"></script>
+  <script src="js/i18n.js?v=18"></script>
+  <script src="js/main.js?v=18"></script>
   <script src="js/bot.js?v=4" defer></script>
 </body>
 </html>

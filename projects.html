@@ -23,9 +23,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=20">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
   <aside class="sidebar">
     <a class="brand" href="index.html">Rijkaard's Cyberworld</a>
@@ -48,7 +49,7 @@
     <a class="github-btn" href="https://github.com/Rijkaard1" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
   </aside>
 
-  <main>
+  <main id="main" tabindex="-1">
     <h1 class="page-title"><span>&gt;</span> Projects</h1>
     <p class="lead">Things I've built so far.</p>
 
@@ -56,7 +57,7 @@
       <div class="project-head">
         <img src="images/eden_logo.png" alt="The Last Cipher of Eden logo" width="80" height="80">
         <div>
-          <h3>The Last Cipher of Eden</h3>
+          <h2>The Last Cipher of Eden</h2>
           <p class="mono meta">DTI413 Innovation Project &middot; Kasem Bundit University &middot; Team project</p>
         </div>
       </div>
@@ -68,7 +69,7 @@
         <span class="tag-item">9 languages: Python, Java, C#, JavaScript, TypeScript, C++, Rust, SQL, PHP</span>
       </div>
       <div class="credits">
-        <h4 class="mono">Team</h4>
+        <h3 class="mono">Team</h3>
         <p>Built together by:</p>
         <ul>
           <li>Paing Htoo Kyaw</li>
@@ -78,18 +79,18 @@
         </ul>
       </div>
       <div class="shots">
-        <button type="button" class="shot" aria-label="Enlarge: The Coder tells the story"><img src="images/01_Briefing_Story.jpg" alt="The Coder tells the story" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: Choose your language"><img src="images/04_LanguageChoice.jpg" alt="Choose your language screen with nine languages" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: A wrong answer and the Byte Spider"><img src="images/07_Result_Wrong_SpiderReaction.jpg" alt="A wrong answer and the Byte Spider's reaction" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: Map after the Beginner level"><img src="images/09_Map_BeginnerComplete.jpg" alt="Map after the Beginner level" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: The Overlord story scene"><img src="images/11_Story_Overlord.jpg" alt="The Overlord story scene" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: The final challenge begins"><img src="images/12_Final_Start.jpg" alt="The final challenge begins" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: The Overlord is defeated"><img src="images/14_Victory_OverlordDefeated.jpg" alt="The Overlord is defeated" loading="lazy"></button>
-        <button type="button" class="shot" aria-label="Enlarge: She is free"><img src="images/19_Victory_SheIsFree.jpg" alt="Victory: the Girl of Eden is free" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: The Coder tells the story"><img src="images/01_Briefing_Story.jpg" alt="The Coder tells the story" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: Choose your language"><img src="images/04_LanguageChoice.jpg" alt="Choose your language screen with nine languages" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: A wrong answer and the Byte Spider"><img src="images/07_Result_Wrong_SpiderReaction.jpg" alt="A wrong answer and the Byte Spider's reaction" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: Map after the Beginner level"><img src="images/09_Map_BeginnerComplete.jpg" alt="Map after the Beginner level" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: The Overlord story scene"><img src="images/11_Story_Overlord.jpg" alt="The Overlord story scene" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: The final challenge begins"><img src="images/12_Final_Start.jpg" alt="The final challenge begins" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: The Overlord is defeated"><img src="images/14_Victory_OverlordDefeated.jpg" alt="The Overlord is defeated" width="1280" height="720" loading="lazy"></button>
+        <button type="button" class="shot" aria-label="Enlarge: She is free"><img src="images/19_Victory_SheIsFree.jpg" alt="Victory: the Girl of Eden is free" width="1280" height="720" loading="lazy"></button>
       </div>
       <dialog class="lightbox" aria-label="Enlarged screenshot">
         <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
-        <img src="" alt="">
+        <img alt="">
       </dialog>
       <div class="btn-row">
         <a class="btn green" href="https://github.com/Rijkaard1/the-last-cipher-of-eden" target="_blank" rel="noopener noreferrer">View repository &rarr;</a>
@@ -99,7 +100,7 @@
     <article class="card project" id="simple-security-system">
       <div class="project-head">
         <div>
-          <h3>Simple Security System</h3>
+          <h2>Simple Security System</h2>
           <p class="mono meta">Personal project &middot; Command-line tool &middot; Windows</p>
         </div>
       </div>
@@ -129,8 +130,8 @@
     </div>
     <footer>&copy; 2026 Rijkaard's Cyberworld &middot; Erich Law Eh</footer>
   </main>
-  <script src="js/i18n.js?v=16"></script>
-  <script src="js/main.js?v=16"></script>
+  <script src="js/i18n.js?v=18"></script>
+  <script src="js/main.js?v=18"></script>
   <script src="js/bot.js?v=4" defer></script>
 </body>
 </html>
