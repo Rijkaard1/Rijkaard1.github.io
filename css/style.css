@@ -379,3 +379,24 @@ main:has(.hero) { max-width: 1200px; }
 .course-card .answer-note { color: var(--muted); font-size: 0.78rem; }
 .course-card:hover, .course-card:focus-within { transform: translateY(-3px); border-color: var(--green); box-shadow: var(--glow-green); }
 .course-card .open-link:focus-visible::after { outline: 2px solid var(--green); outline-offset: 2px; }
+
+/* ---------- Course search and filters ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.course-tools { max-width: 900px; margin: 0 auto 28px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.search-box { width: 100%; }
+.search-box input { width: 100%; padding: 14px 18px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); color: var(--text); font: 500 1rem "Inter", system-ui, sans-serif; text-align: center; transition: border-color 0.2s, box-shadow 0.2s; }
+.search-box input::placeholder { color: var(--muted); }
+.search-box input:focus { outline: none; border-color: var(--green); box-shadow: var(--glow-green); }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.chip { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel-2); color: var(--text); font: 600 0.85rem "JetBrains Mono", monospace; cursor: pointer; transition: 0.2s; }
+.chip small { color: var(--muted); font-size: 0.72rem; margin-left: 4px; }
+.chip:hover { border-color: var(--green); }
+.chip.active { background: var(--purple); border-color: var(--purple); color: #fff; box-shadow: var(--glow-purple); }
+.chip.active small { color: #dbe7ff; }
+.check { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.9rem; cursor: pointer; }
+.check input { accent-color: var(--purple); width: 16px; height: 16px; }
+.result-count { color: var(--muted); font-size: 0.8rem; margin: 0; }
+.course-card[hidden] { display: none !important; }
+.no-results { text-align: center; padding: 28px 0; color: var(--muted); }
+.no-results p { margin-bottom: 14px; }
+.no-results[hidden] { display: none; }

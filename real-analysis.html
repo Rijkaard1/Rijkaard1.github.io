@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=13">
+  <link rel="stylesheet" href="css/style.css?v=14">
 </head>
 <body>
   <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
@@ -47,8 +47,23 @@
     <h1 class="page-title"><span>&gt;</span> Real Analysis</h1>
     <p class="lead">Ordered from the basics to the most advanced: pre-algebra, algebra, geometry, trigonometry, probability and statistics, calculus and integration. Click a course to open its PDF.</p>
 
-    <div class="course-grid">
-      <article class="card course-card">
+    <div class="course-tools">
+      <label class="search-box">
+        <span class="sr-only">Search courses</span>
+        <input type="search" id="course-search" placeholder="Search courses or topics, e.g. fractions, integrals, unit circle" autocomplete="off">
+      </label>
+      <div class="chips" role="group" aria-label="Filter by level">
+        <button type="button" class="chip active" data-band="all" aria-pressed="true">All levels</button>
+        <button type="button" class="chip" data-band="basic" aria-pressed="false">Basic <small>1&ndash;3</small></button>
+        <button type="button" class="chip" data-band="intermediate" aria-pressed="false">Intermediate <small>4&ndash;5</small></button>
+        <button type="button" class="chip" data-band="advanced" aria-pressed="false">Advanced <small>6&ndash;8</small></button>
+      </div>
+      <label class="check"><input type="checkbox" id="only-solutions"> Solutions PDF available</label>
+      <p class="result-count mono" id="course-count" aria-live="polite"></p>
+    </div>
+
+    <div class="course-grid" id="course-grid">
+      <article class="card course-card" data-level="1" data-band="basic" data-solutions="yes">
         <h3>Pre-Algebra Foundations</h3>
         <p class="course-meta mono">Level 1 &middot; PDF &middot; 89 pages &middot; by Rijkaard</p>
         <p>The starting point: from whole numbers and fractions to shapes, data and the first equations. It covers number sense, decimals and percents, integers, ratios and proportions, simple equations, measurement, and graphs and probability, and ends with a final test.</p>
@@ -58,7 +73,7 @@
           <a class="solutions-link mono" href="files/mathematics/PreAlgebra_Foundations_Solutions.pdf" target="_blank" rel="noopener noreferrer">Solutions PDF &rarr;</a>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="2" data-band="basic" data-solutions="yes">
         <h3>Algebra Foundations</h3>
         <p class="course-meta mono">Level 2 &middot; PDF &middot; 95 pages &middot; by Rijkaard</p>
         <p>A full course that takes you from the first numbers to the threshold of trigonometry. It builds the algebra everything else depends on, with worked examples and exercises in every chapter.</p>
@@ -68,7 +83,7 @@
           <a class="solutions-link mono" href="files/mathematics/Algebra_Foundations_Solutions.pdf" target="_blank" rel="noopener noreferrer">Solutions PDF &rarr;</a>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="3" data-band="basic" data-solutions="yes">
         <h3>Geometry Foundations</h3>
         <p class="course-meta mono">Level 3 &middot; PDF &middot; 79 pages &middot; by Rijkaard</p>
         <p>A full course from points and angles to solids and transformations. It covers shapes, triangles, the Pythagorean theorem, perimeter and area, circles, volume and surface area, and coordinate geometry.</p>
@@ -78,7 +93,7 @@
           <a class="solutions-link mono" href="files/mathematics/Geometry_Foundations_Solutions.pdf" target="_blank" rel="noopener noreferrer">Solutions PDF &rarr;</a>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="4" data-band="intermediate" data-solutions="yes">
         <h3>Trigonometry and Precalculus</h3>
         <p class="course-meta mono">Level 4 &middot; PDF &middot; 89 pages &middot; by Rijkaard</p>
         <p>From triangles and waves to the doorstep of calculus. It covers right-triangle trigonometry, the unit circle and radians, graphs, identities and equations, then polynomial and rational functions, vectors, polar coordinates and complex numbers.</p>
@@ -88,7 +103,7 @@
           <a class="solutions-link mono" href="files/mathematics/Trigonometry_Precalculus_Solutions.pdf" target="_blank" rel="noopener noreferrer">Solutions PDF &rarr;</a>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="5" data-band="intermediate" data-solutions="yes">
         <h3>Probability and Statistics</h3>
         <p class="course-meta mono">Level 5 &middot; PDF &middot; 95 pages &middot; by Rijkaard</p>
         <p>From counting data to making smart guesses. It covers describing data, averages and spread, probability rules, counting and combinations, conditional probability, random variables, the binomial and normal distributions, and sampling and inference.</p>
@@ -98,7 +113,7 @@
           <a class="solutions-link mono" href="files/mathematics/Probability_Statistics_Solutions.pdf" target="_blank" rel="noopener noreferrer">Solutions PDF &rarr;</a>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="6" data-band="advanced" data-solutions="no">
         <h3>Calculus Basics</h3>
         <p class="course-meta mono">Level 6 &middot; PDF &middot; 32 pages</p>
         <p>A complete study guide to the core of calculus: limits, derivatives and an introduction to integration. It includes worked examples, practice problems for every chapter, a full answer key and a formula sheet.</p>
@@ -108,7 +123,7 @@
           <span class="answer-note mono">Answer key included</span>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="7" data-band="advanced" data-solutions="no">
         <h3>Further Integration Topics</h3>
         <p class="course-meta mono">Level 7 &middot; PDF &middot; 42 pages</p>
         <p>The next step after basic integration: the main techniques, improper integrals, numerical methods and applications. It ends with a strategy chapter, a mixed review, an answer key and a formula sheet.</p>
@@ -118,7 +133,7 @@
           <span class="answer-note mono">Answer key included</span>
         </div>
       </article>
-      <article class="card course-card">
+      <article class="card course-card" data-level="8" data-band="advanced" data-solutions="no">
         <h3>Double Integrals</h3>
         <p class="course-meta mono">Level 8 &middot; PDF &middot; 37 pages</p>
         <p>An introduction to integrating over regions in the plane. It covers partial derivatives, Fubini&rsquo;s theorem, polar coordinates, applications such as area, volume and mass, change of variables, and a first look at triple integrals.</p>
@@ -129,9 +144,13 @@
         </div>
       </article>
     </div>
+    <div class="no-results" id="no-results" hidden>
+      <p>No courses match your search.</p>
+      <button type="button" class="btn" id="reset-filters">Clear search and filters</button>
+    </div>
     <footer>&copy; 2026 Rijkaard's Cyberworld &middot; Erich Law Eh</footer>
   </main>
-  <script src="js/main.js?v=13"></script>
+  <script src="js/main.js?v=14"></script>
   <script src="js/bot.js?v=3" defer></script>
 </body>
 </html>

@@ -69,3 +69,53 @@ if (emailBtn) {
   emailBtn.href = "mailto:" + addr;
   emailBtn.textContent = addr;
 }
+
+/* ---------- Course search and filters (Real Analysis page) ---------- */
+(function () {
+  const grid = document.getElementById("course-grid");
+  const search = document.getElementById("course-search");
+  if (!grid || !search) return;
+  const cards = [...grid.querySelectorAll(".course-card")];
+  const chips = [...document.querySelectorAll(".chip")];
+  const onlySol = document.getElementById("only-solutions");
+  const count = document.getElementById("course-count");
+  const empty = document.getElementById("no-results");
+  const reset = document.getElementById("reset-filters");
+  const text = cards.map((c) => c.textContent.toLowerCase().replace(/\s+/g, " "));
+  let band = "all";
+
+  function apply() {
+    const words = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach((c, i) => {
+      const ok =
+        (band === "all" || c.dataset.band === band) &&
+        (!onlySol.checked || c.dataset.solutions === "yes") &&
+        words.every((w) => text[i].includes(w));
+      c.hidden = !ok;
+      if (ok) shown++;
+    });
+    count.textContent = "Showing " + shown + " of " + cards.length + " courses";
+    empty.hidden = shown !== 0;
+  }
+  chips.forEach((chip) =>
+    chip.addEventListener("click", () => {
+      band = chip.dataset.band;
+      chips.forEach((c) => {
+        const on = c === chip;
+        c.classList.toggle("active", on);
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      apply();
+    })
+  );
+  search.addEventListener("input", apply);
+  search.addEventListener("keydown", (e) => { if (e.key === "Escape") { search.value = ""; apply(); } });
+  onlySol.addEventListener("change", apply);
+  reset.addEventListener("click", () => {
+    search.value = "";
+    onlySol.checked = false;
+    chips[0].click();
+  });
+  apply();
+})();
