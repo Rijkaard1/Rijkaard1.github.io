@@ -430,3 +430,12 @@ body, .sidebar, .card, .stat, .chip, .tag-item, .search-box input { transition: 
 .theme-toggle:hover, .theme-toggle:focus-visible { border-color: var(--green); box-shadow: var(--glow-green); outline: none; }
 .theme-toggle .ti { font-size: 1.05rem; line-height: 1; }
 .theme-toggle + .github-btn { margin-top: 0; }
+
+/* ---------- English / Deutsch switch ---------- */
+.lang-switch { margin-top: auto; margin-bottom: 10px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--panel-2); }
+.lang-btn { padding: 9px 0; border: 0; background: transparent; color: var(--muted); font: 700 0.8rem "JetBrains Mono", monospace; letter-spacing: 1px; cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+.lang-btn + .lang-btn { border-left: 1px solid var(--border); }
+.lang-btn:hover { color: var(--text); }
+.lang-btn.active { background: var(--purple); color: #fff; }
+.lang-btn:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; }
+.lang-switch + .theme-toggle { margin-top: 0; }

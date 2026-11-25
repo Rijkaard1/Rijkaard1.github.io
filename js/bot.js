@@ -5,13 +5,16 @@
 
   /* ---------- Dialogue: edit these lines freely. href = where a click leads. ---------- */
   const LINES = [
-    { text: "Hello, I am Rijkaard. Welcome to my website!", href: "about.html" },
-    { text: "Anything you want to know further about me? Click me!", href: "about.html" },
-    { text: "Want to see what I've built? Click me to check my projects.", href: "projects.html" },
-    { text: "Curious about my skills? Programming, cybersecurity and AI. Click me!", href: "skills.html" },
-    { text: "I love maths too. Click me for my mathematics notes.", href: "mathematics.html" },
-    { text: "Want to get in touch? Click me and say hi!", href: "contact.html" },
+    { text: "Hello, I am Rijkaard. Welcome to my website!", de: "Hallo, ich bin Rijkaard. Willkommen auf meiner Website!", href: "about.html" },
+    { text: "Anything you want to know further about me? Click me!", de: "Möchtest du mehr über mich wissen? Klick auf mich!", href: "about.html" },
+    { text: "Want to see what I've built? Click me to check my projects.", de: "Willst du sehen, was ich gebaut habe? Klick auf mich und schau dir meine Projekte an.", href: "projects.html" },
+    { text: "Curious about my skills? Programming, cybersecurity and AI. Click me!", de: "Neugierig auf meine Kenntnisse? Programmieren, Cybersicherheit und KI. Klick auf mich!", href: "skills.html" },
+    { text: "I love maths too. Click me for my mathematics notes.", de: "Ich liebe auch Mathe. Klick auf mich für meine Mathematik-Skripte.", href: "mathematics.html" },
+    { text: "Want to get in touch? Click me and say hi!", de: "Willst du Kontakt aufnehmen? Klick auf mich und sag Hallo!", href: "contact.html" },
   ].filter((l) => l.href !== page);
+  const isDe = () => !!(window.i18n && window.i18n.lang() === "de");
+  const lineText = (l) => (isDe() && l.de ? l.de : l.text);
+  const BOT_LABEL = { en: "Rijkaard the football bot. Click to learn more about me.", de: "Rijkaard, der Fußball-Bot. Klick, um mehr über mich zu erfahren." };
 
   /* ---------- Styles ---------- */
   const css = `
@@ -105,7 +108,7 @@
   const root = document.createElement("div");
   root.className = "rk-bot";
   root.innerHTML = `<div class="rk-bubble" role="status" aria-live="polite"></div>
-    <button class="rk-body" type="button" aria-label="Rijkaard the football bot. Click to learn more about me.">${SVG}</button>`;
+    <button class="rk-body" type="button" aria-label="${BOT_LABEL[isDe() ? "de" : "en"]}">${SVG}</button>`;
   document.body.appendChild(root);
   const bubble = root.querySelector(".rk-bubble");
   const body = root.querySelector(".rk-body");
@@ -203,7 +206,7 @@
   function say(line, ms) {
     ms = ms || 6500;
     current = line;
-    bubble.textContent = line.text;
+    bubble.textContent = lineText(line);
     bubble.classList.add("show");
     talking = true;
     talkEnd = Date.now() + ms;
@@ -227,7 +230,8 @@
   }
   if (saved && saved.talking && saved.talkEnd - Date.now() > 400 && saved.href !== page) {
     // he was in the middle of a sentence: carry on with the same words
-    say({ text: saved.text, href: saved.href }, saved.talkEnd - Date.now());
+    const known = LINES.find((l) => l.href === saved.href && (l.text === saved.text || l.de === saved.text));
+    say(known || { text: saved.text, href: saved.href }, saved.talkEnd - Date.now());
   } else if (saved) {
     // he was between sentences: keep the same rhythm (or a short pause if he had just finished)
     clearTimeout(timer);
@@ -245,6 +249,10 @@
     save();
     window.location.href = href;
   }
+  document.addEventListener("langchange", () => {
+    body.setAttribute("aria-label", BOT_LABEL[isDe() ? "de" : "en"]);
+    if (talking) { bubble.textContent = lineText(current); place(); }
+  });
   body.addEventListener("click", go);
   bubble.addEventListener("click", go);
 })();

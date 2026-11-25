@@ -81,7 +81,8 @@ if (emailBtn) {
   const count = document.getElementById("course-count");
   const empty = document.getElementById("no-results");
   const reset = document.getElementById("reset-filters");
-  const text = cards.map((c) => c.textContent.toLowerCase().replace(/\s+/g, " "));
+  const readText = () => cards.map((c) => c.textContent.toLowerCase().replace(/\s+/g, " "));
+  let text = readText();
   let band = "all";
 
   function apply() {
@@ -95,7 +96,10 @@ if (emailBtn) {
       c.hidden = !ok;
       if (ok) shown++;
     });
-    count.textContent = "Showing " + shown + " of " + cards.length + " courses";
+    count.textContent =
+      window.i18n && window.i18n.lang() === "de"
+        ? "Zeige " + shown + " von " + cards.length + " Kursen"
+        : "Showing " + shown + " of " + cards.length + " courses";
     empty.hidden = shown !== 0;
   }
   chips.forEach((chip) =>
@@ -117,6 +121,7 @@ if (emailBtn) {
     onlySol.checked = false;
     chips[0].click();
   });
+  document.addEventListener("langchange", () => { text = readText(); apply(); });
   apply();
 })();
 
@@ -126,11 +131,12 @@ if (emailBtn) {
   if (!btn) return;
   const root = document.documentElement;
   const meta = document.querySelector('meta[name="theme-color"]');
+  const T = (s) => (window.i18n ? window.i18n.t(s) : s);
   function paint() {
     const light = root.getAttribute("data-theme") === "light";
     btn.querySelector(".ti").innerHTML = light ? "&#9790;" : "&#9728;";
-    btn.querySelector(".tl").textContent = light ? "Dark theme" : "Light theme";
-    btn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+    btn.querySelector(".tl").textContent = T(light ? "Dark theme" : "Light theme");
+    btn.setAttribute("aria-label", T(light ? "Switch to dark theme" : "Switch to light theme"));
     if (meta) meta.setAttribute("content", light ? "#f3f6fc" : "#05070d");
   }
   btn.addEventListener("click", () => {
@@ -140,4 +146,5 @@ if (emailBtn) {
     paint();
   });
   paint();
+  document.addEventListener("langchange", paint);
 })();
