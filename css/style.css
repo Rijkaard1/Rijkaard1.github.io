@@ -348,3 +348,23 @@ main:not(:has(.hero)) .card .btn { margin-left: auto; margin-right: auto; }
 .course-grid > .course-card { flex: 0 0 calc((100% - 40px) / 3); max-width: calc((100% - 40px) / 3); }
 @media (max-width: 1200px) { .course-grid > .course-card { flex-basis: calc((100% - 20px) / 2); max-width: calc((100% - 20px) / 2); } }
 @media (max-width: 760px)  { .course-grid > .course-card { flex-basis: 100%; max-width: 100%; } }
+
+/* ---------- Home: highlights ---------- */
+main:has(.hero) { max-width: 1200px; }
+.highlights { margin-top: 56px; }
+.section-label { font-size: 1rem; color: var(--green); margin: 0 0 16px; }
+.section-label span { color: var(--purple); margin-right: 8px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.stat { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.stat strong { display: block; font: 700 2.2rem "JetBrains Mono", monospace; color: var(--green); line-height: 1.1; text-shadow: var(--glow-green); }
+.stat span { color: var(--muted); font-size: 0.85rem; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.feature { display: flex; flex-direction: column; gap: 10px; margin-bottom: 0; color: var(--text); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.feature:hover, .feature:focus-visible { text-decoration: none; transform: translateY(-3px); border-color: var(--green); box-shadow: var(--glow-green); outline: none; }
+.feature img { width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+.feature h3 { font-size: 1.1rem; color: #fff; }
+.feature p { font-size: 0.92rem; }
+.feature .tags { gap: 8px; }
+.feature .tag-item { font-size: 0.72rem; padding: 4px 10px; }
+.feature .open-link { margin-top: auto; padding-top: 6px; color: var(--green); font-weight: 600; font-size: 0.85rem; }
+.feature-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; font-size: 1.5rem; font-weight: 700; color: var(--bg); background: linear-gradient(135deg, var(--purple), var(--green)); box-shadow: var(--glow-purple); }

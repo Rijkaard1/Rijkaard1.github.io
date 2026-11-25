@@ -61,3 +61,11 @@ document.querySelectorAll("[data-version-src]").forEach(async (box) => {
     if (date && v.updated) date.textContent = v.updated;
   } catch (_) { /* keep the fallback text already in the page */ }
 });
+
+/* ---------- Email button: the address is put together here so it is not written plainly in the page ---------- */
+const emailBtn = document.getElementById("email-btn");
+if (emailBtn) {
+  const addr = emailBtn.dataset.u + "@" + emailBtn.dataset.d;
+  emailBtn.href = "mailto:" + addr;
+  emailBtn.textContent = addr;
+}
