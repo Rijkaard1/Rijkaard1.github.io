@@ -113,10 +113,28 @@
   /* ---------- Walking ---------- */
   const SPEED = 55; // px per second
   let x = 0, dir = 1, last = 0, hovering = false, paused = false, talking = false, current = LINES[0];
+  let idx = 0, timer, talkEnd = 0, nextAt = 0;
   const bounds = () => {
     const left = window.innerWidth > 820 ? 270 + 10 : 6;
     return { min: left, max: Math.max(left + 20, window.innerWidth - 90) };
   };
+
+  /* ---------- Remember where he is, so changing page does not interrupt him ---------- */
+  const KEY = "rk-bot-state";
+  function save() {
+    try {
+      sessionStorage.setItem(KEY, JSON.stringify({
+        x, dir, idx, talking, text: current.text, href: current.href, talkEnd, nextAt, t: Date.now(),
+      }));
+    } catch (e) { /* storage unavailable: he simply starts over */ }
+  }
+  function load() {
+    try {
+      const s = JSON.parse(sessionStorage.getItem(KEY) || "null");
+      if (s && typeof s.x === "number" && Date.now() - s.t < 30000) return s;
+    } catch (e) { /* ignore */ }
+    return null;
+  }
   function place() {
     root.style.transform = `translateX(${x}px)`;
     body.classList.toggle("rk-flip", dir < 0 && !talking);
@@ -144,7 +162,21 @@
     requestAnimationFrame(tick);
   }
   const b0 = bounds();
+  const saved = load();
   x = reduce ? window.innerWidth - 100 : b0.min;
+  if (saved) {
+    dir = saved.dir < 0 ? -1 : 1;
+    idx = saved.idx || 0;
+    x = saved.x;
+    // he kept walking while the new page was loading: catch up (bouncing off the edges)
+    let left = reduce || saved.talking ? 0 : Math.min((Date.now() - saved.t) / 1000, 3);
+    while (left > 0) {
+      const room = dir > 0 ? (b0.max - x) / SPEED : (x - b0.min) / SPEED;
+      if (left <= room) { x += dir * SPEED * left; left = 0; }
+      else { x = dir > 0 ? b0.max : b0.min; dir = -dir; left -= Math.max(room, 0); }
+    }
+    x = Math.min(Math.max(x, b0.min), b0.max);
+  }
   place();
   setWalking(true);
   requestAnimationFrame(tick);
@@ -168,33 +200,49 @@
   body.addEventListener("blur", () => hold(false));
 
   /* ---------- Talking ---------- */
-  let idx = 0, timer;
-  function say(line) {
+  function say(line, ms) {
+    ms = ms || 6500;
     current = line;
     bubble.textContent = line.text;
     bubble.classList.add("show");
     talking = true;
+    talkEnd = Date.now() + ms;
     sync();
     clearTimeout(timer);
-    timer = setTimeout(hush, 6500);
+    timer = setTimeout(hush, ms);
   }
-  function hush() {
+  function hush(wait) {
     bubble.classList.remove("show");
     talking = false;
+    wait = typeof wait === "number" ? wait : 7000;
+    nextAt = Date.now() + wait;
     sync();
     clearTimeout(timer);
-    timer = setTimeout(next, 7000);
+    timer = setTimeout(next, wait);
   }
   function next() {
     if (!LINES.length) return;
     say(LINES[idx % LINES.length]);
     idx++;
   }
-  setTimeout(next, 1200);
+  if (saved && saved.talking && saved.talkEnd - Date.now() > 400 && saved.href !== page) {
+    // he was in the middle of a sentence: carry on with the same words
+    say({ text: saved.text, href: saved.href }, saved.talkEnd - Date.now());
+  } else if (saved) {
+    // he was between sentences: keep the same rhythm (or a short pause if he had just finished)
+    clearTimeout(timer);
+    timer = setTimeout(next, Math.max(saved.nextAt - Date.now(), 800));
+  } else {
+    timer = setTimeout(next, 1200);
+  }
+  setInterval(save, 400);
+  window.addEventListener("pagehide", save);
+  window.addEventListener("beforeunload", save);
 
   /* ---------- Click: go where the current line points ---------- */
   function go() {
     const href = (talking ? current : LINES[0]).href;
+    save();
     window.location.href = href;
   }
   body.addEventListener("click", go);
