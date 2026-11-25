@@ -323,3 +323,22 @@ main:has(.project) { max-width: 1500px; }
 main:has(.project) > .btn-row { justify-content: center; max-width: 1160px; margin: 0 auto; }
 main:has(.project) > footer { text-align: center; }
 @media (max-width: 760px) { .project { padding: 28px 20px; } .project h3 { font-size: 1.5rem; } }
+
+/* ---------- Every page except Home: centered layout ---------- */
+main:not(:has(.hero)) { max-width: 1500px; }
+main:not(:has(.hero)) .page-title,
+main:not(:has(.hero)) .lead { text-align: center; }
+main:not(:has(.hero)) .back-link { display: block; text-align: center; }
+main:not(:has(.hero)) > footer { text-align: center; }
+main:not(:has(.hero)) > .card:not(.project),
+main:not(:has(.hero)) > .grid { max-width: 1000px; margin-left: auto; margin-right: auto; }
+main:not(:has(.hero)) .card { text-align: center; }
+main:not(:has(.hero)) .card .tags { justify-content: center; }
+main:not(:has(.hero)) .card .btn { margin-left: auto; margin-right: auto; }
+.card .tag-item { text-align: center; }
+
+/* timeline: centered, dots stacked above each step */
+.timeline { border-left: 0; padding-left: 0; margin: 0 auto; max-width: 640px; }
+.timeline li { padding-bottom: 6px; margin-bottom: 18px; }
+.timeline li::before { position: static; display: block; margin: 0 auto 10px; }
+.timeline li:not(:last-child)::after { content: ""; display: block; width: 2px; height: 22px; margin: 14px auto 0; background: var(--purple); opacity: 0.7; }
