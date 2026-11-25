@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mathematics | Rijkaard's Cyberworld</title>
   <meta name="description" content="Mathematics courses and study files of Erich Law Eh.">
@@ -22,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/style.css?v=15">
 </head>
 <body>
   <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
@@ -39,6 +40,7 @@
       <li><a href="projects.html">~/projects</a></li>
       <li><a href="contact.html">~/contact</a></li>
     </ul>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light theme"><span class="ti" aria-hidden="true">&#9728;</span><span class="tl">Light theme</span></button>
     <a class="github-btn" href="https://github.com/Rijkaard1" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
   </aside>
 
@@ -64,7 +66,7 @@
     </div>
     <footer>&copy; 2026 Rijkaard's Cyberworld &middot; Erich Law Eh</footer>
   </main>
-  <script src="js/main.js?v=14"></script>
+  <script src="js/main.js?v=15"></script>
   <script src="js/bot.js?v=3" defer></script>
 </body>
 </html>

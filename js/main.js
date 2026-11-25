@@ -119,3 +119,25 @@ if (emailBtn) {
   });
   apply();
 })();
+
+/* ---------- Dark / light theme switch ---------- */
+(function () {
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+  const root = document.documentElement;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  function paint() {
+    const light = root.getAttribute("data-theme") === "light";
+    btn.querySelector(".ti").innerHTML = light ? "&#9790;" : "&#9728;";
+    btn.querySelector(".tl").textContent = light ? "Dark theme" : "Light theme";
+    btn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+    if (meta) meta.setAttribute("content", light ? "#f3f6fc" : "#05070d");
+  }
+  btn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) { /* not saved */ }
+    paint();
+  });
+  paint();
+})();
