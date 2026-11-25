@@ -342,3 +342,9 @@ main:not(:has(.hero)) .card .btn { margin-left: auto; margin-right: auto; }
 .timeline li { padding-bottom: 6px; margin-bottom: 18px; }
 .timeline li::before { position: static; display: block; margin: 0 auto 10px; }
 .timeline li:not(:last-child)::after { content: ""; display: block; width: 2px; height: 22px; margin: 14px auto 0; background: var(--purple); opacity: 0.7; }
+
+/* ---------- Course grid: keep an incomplete last row centered ---------- */
+.course-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.course-grid > .course-card { flex: 0 0 calc((100% - 40px) / 3); max-width: calc((100% - 40px) / 3); }
+@media (max-width: 1200px) { .course-grid > .course-card { flex-basis: calc((100% - 20px) / 2); max-width: calc((100% - 20px) / 2); } }
+@media (max-width: 760px)  { .course-grid > .course-card { flex-basis: 100%; max-width: 100%; } }
