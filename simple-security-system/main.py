@@ -2,7 +2,7 @@
 import json
 import os
 
-from modules import network_info, ip_details, connections, wifi_safety, recent_apps, file_monitor, file_finder, ip_watch, startup_check, open_ports, risk_score, logger
+from modules import network_info, ip_details, connections, wifi_safety, recent_apps, file_monitor, file_finder, ip_watch, startup_check, open_ports, risk_score, log_viewer, logger
 from modules.colors import c, cprint, level_color, BOLD
 
 
@@ -247,6 +247,64 @@ def do_risk():
     return "risk_score", r
 
 
+def page_lines(lines, size=40):
+    """Show long text a page at a time."""
+    for i in range(0, len(lines), size):
+        for line in lines[i : i + size]:
+            cprint("  " + line)
+        if i + size < len(lines):
+            try:
+                if input(f"  -- {len(lines) - i - size} more lines. Enter = more, q = stop -- ").strip().lower() == "q":
+                    return
+            except EOFError:
+                return
+
+
+def do_logs():
+    logs = log_viewer.list_logs()
+    if not logs:
+        cprint("\n  No logs yet. Run option 13 (Run all and save to log) first.")
+        return
+    cprint("\n=== Log viewer ===")
+    for i, (date, _, n) in enumerate(logs, 1):
+        cprint(f"  {i}) {date}   {n} entries")
+    pick = input("  Pick a log (Enter = newest, 0 = back): ").strip()
+    if pick == "0":
+        return
+    try:
+        date, path, _ = logs[int(pick) - 1] if pick else logs[0]
+    except (ValueError, IndexError):
+        cprint("  Invalid choice.")
+        return
+    entries = log_viewer.load(path)
+    shown = entries
+    while True:
+        cprint(f"\n=== Log {date} ({len(shown)} of {len(entries)} entries) ===")
+        for i, e in enumerate(shown, 1):
+            t = str(e.get("time", ""))[11:19]
+            name = log_viewer.NAMES.get(e.get("feature"), e.get("feature"))
+            cprint(f"  {i:>2})  {t}  {name:<19} {log_viewer.summarize(e)}")
+        cmd = input("\n  Entry number to open, f = filter by feature, a = show all, 0 = back: ").strip().lower()
+        if cmd == "0":
+            return
+        if cmd == "a":
+            shown = entries
+        elif cmd == "f":
+            feats = log_viewer.features_in(entries)
+            for i, f in enumerate(feats, 1):
+                cprint(f"  {i}) {log_viewer.NAMES.get(f, f)}")
+            sel = input("  Feature number: ").strip()
+            if sel.isdigit() and 1 <= int(sel) <= len(feats):
+                shown = [e for e in entries if e.get("feature") == feats[int(sel) - 1]]
+            else:
+                cprint("  Invalid choice.")
+        elif cmd.isdigit() and 1 <= int(cmd) <= len(shown):
+            cprint("")
+            page_lines(log_viewer.full_text(shown[int(cmd) - 1]))
+        else:
+            cprint("  Invalid choice.")
+
+
 MENU = {
     "1": do_network, "2": do_ip, "3": do_connections, "4": do_wifi, "5": do_apps, "6": do_files,
     "9": do_startup, "10": do_ports,
@@ -267,7 +325,8 @@ def main():
         cprint("9) Startup programs check")
         cprint("10) Open ports check")
         cprint("11) Risk score (overall)")
-        cprint("12) Run all and save to log")
+        cprint("12) Log viewer (past scans)")
+        cprint("13) Run all and save to log")
         cprint("0) Exit")
         choice = input("Choose: ").strip()
         if choice == "0":
@@ -281,6 +340,8 @@ def main():
         elif choice == "11":
             do_risk()
         elif choice == "12":
+            do_logs()
+        elif choice == "13":
             results = {}
             for fn in MENU.values():
                 feature, data = fn()

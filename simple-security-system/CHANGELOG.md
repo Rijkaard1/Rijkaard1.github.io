@@ -2,6 +2,11 @@
 
 Each release updates `version.json` (version number and date) and adds an entry here.
 
+## 1.2.0 - 2026-11-27
+
+- New: log viewer (menu option 12) - browse saved scan logs by date, see a one-line summary per scan, filter by feature and open any entry in full
+- Changed: Run all and save to log is now option 13
+
 ## 1.1.0 - 2026-11-22
 
 - New: overall risk score (0-100, LOW / MODERATE / HIGH) with a breakdown of what raised it and tips (menu option 11)
