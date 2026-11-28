@@ -461,3 +461,5 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline
 /* pictures keep their shape now that they carry width/height attributes */
 .shots img, .feature img { height: auto; }
 .card .credits h3 { color: var(--purple); font-size: 0.85rem; }
+
+.project .note { color: var(--muted); font-size: 0.85rem; margin-top: 16px; margin-bottom: 0; }

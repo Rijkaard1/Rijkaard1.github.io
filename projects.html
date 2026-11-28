@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20">
+  <link rel="stylesheet" href="css/style.css?v=21">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -97,6 +97,34 @@
       </div>
     </article>
 
+    <article class="card project" id="studybuddy">
+      <div class="project-head">
+        <img src="images/studybuddy-logo.svg" alt="StudyBuddy logo" width="80" height="80">
+        <div>
+          <h2>StudyBuddy</h2>
+          <p class="mono meta">Course project &middot; Mobile Application Development &middot; Kasem Bundit University</p>
+        </div>
+      </div>
+      <p>StudyBuddy helps students at Kasem Bundit University find the right classmate to study with, by major, free days or name. Students sign up with an emailed verification code, set up a profile, search and filter classmates, add friends and chat with text, emoji, stickers and voice messages. An admin page shows who is online and lets admins suspend or terminate accounts.</p>
+      <p>The website runs on GitHub Pages. A FastAPI backend on Render with a PostgreSQL database stores accounts, friends and messages, with server-side chat moderation.</p>
+      <div class="tags">
+        <span class="tag-item">HTML &middot; CSS &middot; JavaScript</span>
+        <span class="tag-item">Python</span>
+        <span class="tag-item">FastAPI</span>
+        <span class="tag-item">PostgreSQL</span>
+        <span class="tag-item">Render</span>
+        <span class="tag-item">GitHub Pages</span>
+      </div>
+      <div class="shots single">
+        <button type="button" class="shot" aria-label="Enlarge: StudyBuddy login screen"><img src="images/studybuddy-login.jpg" alt="The StudyBuddy login screen: a purple welcome panel and a form with Student ID and password" width="1280" height="720" loading="lazy"></button>
+      </div>
+      <div class="btn-row">
+        <a class="btn green" href="https://rijkaard1.github.io/StudyBuddy/" target="_blank" rel="noopener noreferrer">Open live site &rarr;</a>
+        <a class="btn" href="https://github.com/Rijkaard1/StudyBuddy" target="_blank" rel="noopener noreferrer">View source &rarr;</a>
+      </div>
+      <p class="note">The free server sleeps when nobody uses it, so the first sign-in can take up to a minute.</p>
+    </article>
+
     <article class="card project" id="simple-security-system">
       <div class="project-head">
         <div>
@@ -130,7 +158,7 @@
     </div>
     <footer>&copy; 2026 Rijkaard's Cyberworld &middot; Erich Law Eh</footer>
   </main>
-  <script src="js/i18n.js?v=18"></script>
+  <script src="js/i18n.js?v=19"></script>
   <script src="js/main.js?v=18"></script>
   <script src="js/bot.js?v=4" defer></script>
 </body>

@@ -232,6 +232,19 @@
     "View source →": "Quellcode ansehen →",
     "Changelog →": "Änderungsprotokoll →",
     "View all repositories →": "Alle Repositories ansehen →",
+    "StudyBuddy logo": "StudyBuddy-Logo",
+    "Course project · Mobile Application Development · Kasem Bundit University":
+      "Kursprojekt · Mobile Application Development · Kasem Bundit University",
+    "StudyBuddy helps students at Kasem Bundit University find the right classmate to study with, by major, free days or name. Students sign up with an emailed verification code, set up a profile, search and filter classmates, add friends and chat with text, emoji, stickers and voice messages. An admin page shows who is online and lets admins suspend or terminate accounts.":
+      "StudyBuddy hilft Studierenden der Kasem Bundit University, die passende Lernpartnerin oder den passenden Lernpartner zu finden, nach Studienfach, freien Tagen oder Name. Man registriert sich mit einem per E-Mail gesendeten Bestätigungscode, richtet ein Profil ein, sucht und filtert Kommilitonen, fügt Freunde hinzu und chattet mit Text, Emojis, Stickern und Sprachnachrichten. Eine Admin-Seite zeigt, wer online ist, und erlaubt es Admins, Konten zu sperren oder zu beenden.",
+    "The website runs on GitHub Pages. A FastAPI backend on Render with a PostgreSQL database stores accounts, friends and messages, with server-side chat moderation.":
+      "Die Website läuft auf GitHub Pages. Ein FastAPI-Backend auf Render mit einer PostgreSQL-Datenbank speichert Konten, Freunde und Nachrichten, mit serverseitiger Chat-Moderation.",
+    "Enlarge: StudyBuddy login screen": "Vergrößern: Anmeldebildschirm von StudyBuddy",
+    "The StudyBuddy login screen: a purple welcome panel and a form with Student ID and password":
+      "Der Anmeldebildschirm von StudyBuddy: ein violettes Willkommensfeld und ein Formular mit Studierenden-ID und Passwort",
+    "Open live site →": "Live-Seite öffnen →",
+    "The free server sleeps when nobody uses it, so the first sign-in can take up to a minute.":
+      "Der kostenlose Server schläft, wenn ihn niemand nutzt. Die erste Anmeldung kann deshalb bis zu einer Minute dauern.",
     "Enlarged screenshot": "Vergrößerter Screenshot",
     "Close": "Schließen",
     "Enlarge: The Coder tells the story": "Vergrößern: Der Coder erzählt die Geschichte",
