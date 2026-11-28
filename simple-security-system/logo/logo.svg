@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="t d">
+  <title id="t">Simple Security System logo</title>
+  <desc id="d">A purple hexagon containing three green S letters over a short purple line</desc>
+  <polygon points="256,46 437.9,151 437.9,361 256,466 74.1,361 74.1,151" fill="#1b1830" stroke="#b44dff" stroke-width="18" stroke-linejoin="round"/>
+  <g fill="none" stroke="#39ff88" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path transform="translate(126 185) scale(2.4)" d="M28 8C28 2 22 0 15 0C7 0 2 4 2 11C2 18 8 21 15 24C22 27 28 30 28 37C28 44 22 48 15 48C7 48 2 45 2 39"/>
+    <path transform="translate(220 185) scale(2.4)" d="M28 8C28 2 22 0 15 0C7 0 2 4 2 11C2 18 8 21 15 24C22 27 28 30 28 37C28 44 22 48 15 48C7 48 2 45 2 39"/>
+    <path transform="translate(314 185) scale(2.4)" d="M28 8C28 2 22 0 15 0C7 0 2 4 2 11C2 18 8 21 15 24C22 27 28 30 28 37C28 44 22 48 15 48C7 48 2 45 2 39"/>
+  </g>
+  <line x1="196" y1="330" x2="316" y2="330" stroke="#b44dff" stroke-width="10" stroke-linecap="round"/>
+</svg>

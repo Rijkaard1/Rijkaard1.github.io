@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo/logo.svg" alt="Simple Security System logo: a purple hexagon with three green S letters" width="120" height="120">
+</p>
+
 # Simple Security System
 
 A small command-line security checker for Windows, written in Python. It runs from a text menu and reports on your laptop's network, connections, downloads and startup items. No extra libraries are needed, only Python 3 and Windows.
