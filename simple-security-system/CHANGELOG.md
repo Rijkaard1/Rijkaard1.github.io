@@ -2,6 +2,10 @@
 
 Each release updates `version.json` (version number and date) and adds an entry here.
 
+## 1.2.1 - 2026-11-28
+
+- New: logo (purple hexagon with green SSS) shown as a small banner with the name and version when the program starts
+
 ## 1.2.0 - 2026-11-27
 
 - New: log viewer (menu option 12) - browse saved scan logs by date, see a one-line summary per scan, filter by feature and open any entry in full

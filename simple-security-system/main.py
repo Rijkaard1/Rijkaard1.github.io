@@ -3,7 +3,7 @@ import json
 import os
 
 from modules import network_info, ip_details, connections, wifi_safety, recent_apps, file_monitor, file_finder, ip_watch, startup_check, open_ports, risk_score, log_viewer, logger
-from modules.colors import c, cprint, level_color, BOLD
+from modules.colors import c, cprint, level_color, BOLD, GREEN, PURPLE
 
 
 def version_label():
@@ -15,6 +15,23 @@ def version_label():
         return f" v{v['version']} (updated {v['updated']})"
     except (OSError, ValueError, KeyError):
         return ""
+
+
+def show_banner():
+    """Small hexagon logo with the name and version, shown once when the program starts."""
+    def purple(s):
+        return c(s, PURPLE)
+
+    rows = [
+        (purple("    _______   "), ""),
+        (purple("   /       \\  "), c("Simple Security System", BOLD)),
+        (purple("  /   ") + c("SSS", BOLD, GREEN) + purple("   \\ "), version_label().strip()),
+        (purple("  \\         / "), "Network, downloads and startup checks"),
+        (purple("   \\_______/  "), ""),
+    ]
+    cprint("")
+    for logo, text in rows:
+        cprint(f"{logo}   {text}".rstrip())
 
 
 def show(title, data):
@@ -312,6 +329,7 @@ MENU = {
 
 
 def main():
+    show_banner()
     while True:
         cprint(f"\n--- Simple Security System{version_label()} ---")
         cprint("1) Current network info")
