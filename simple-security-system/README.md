@@ -23,7 +23,7 @@ The menu shows the current version and the date it was last updated.
 | 2 | My public IP details | Public IP, ISP, city and country (via ipinfo.io) |
 | 3 | Active connections | Remote IPs your laptop is connected to, and the program using each |
 | 4 | Wi-Fi safety check | Rates the Wi-Fi encryption: SAFE / OK / WEAK / UNSAFE |
-| 5 | Apps opened in 24 hours | Programs launched recently (Windows UserAssist) |
+| 5 | Apps opened in 24 hours | Programs launched recently, with friendly names (Windows UserAssist) |
 | 6 | Downloaded files check | Last 30 days of Downloads: signature, source, risky types; rated SAFE / CAUTION / WARNING |
 | 7 | Find a file location | Search all drives by file name and extension |
 | 8 | Unknown IP alerts | Warns about IPs your laptop has not connected to before; scan once or live mode |

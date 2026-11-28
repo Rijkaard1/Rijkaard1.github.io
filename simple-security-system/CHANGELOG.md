@@ -2,6 +2,11 @@
 
 Each release updates `version.json` (version number and date) and adds an entry here.
 
+## 1.2.2 - 2026-11-28
+
+- New: friendlier app names in "Apps opened in the last 24 hours" (for example "Snipping Tool" instead of `Microsoft.ScreenSketch_8wekyb3d8bbwe!App`)
+- Changed: entries for the same app (such as several version folders) are merged into one row; the original names are kept in the log
+
 ## 1.2.1 - 2026-11-28
 
 - New: logo (purple hexagon with green SSS) shown as a small banner with the name and version when the program starts
